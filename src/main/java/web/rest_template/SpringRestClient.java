@@ -47,7 +47,7 @@ public class SpringRestClient {
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         Map<String, Integer> params = new HashMap<String, Integer>();
         params.put("id", 3);
-        User updateUser = new User(3L, "Tomas", "Shelby", (byte) 30);
+        User updateUser = new User(3L, "Tomas", "Shelby", (byte) 50);
         HttpEntity<User> updateHttp = new HttpEntity<>(updateUser, headers);
 
         ResponseEntity<String> responseEntity = restTemplate.exchange(GET_USER_UPDATE_BY_ID_URL, HttpMethod.PUT,
