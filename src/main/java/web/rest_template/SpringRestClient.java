@@ -37,7 +37,8 @@ public class SpringRestClient {
         User newUser = new User(3L, "James", "Brown", (byte) 50);
         HttpEntity<User> requestBody = new HttpEntity<>(newUser, headers);
 
-        ResponseEntity<String> resultAddUser = restTemplate.postForEntity(GET_USERS_CREATE_URL, requestBody, String.class);
+        ResponseEntity<String> resultAddUser = restTemplate.exchange(GET_USERS_CREATE_URL, HttpMethod.POST,
+                requestBody, String.class);
         System.out.println(resultAddUser.getBody());
 
         //PUT
@@ -49,7 +50,8 @@ public class SpringRestClient {
         User updateUser = new User(3L, "Tomas", "Shelby", (byte) 30);
         HttpEntity<User> updateHttp = new HttpEntity<>(updateUser, headers);
 
-        ResponseEntity<String> responseEntity = restTemplate.exchange(GET_USER_UPDATE_BY_ID_URL, HttpMethod.PUT, updateHttp, String.class, params);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(GET_USER_UPDATE_BY_ID_URL, HttpMethod.PUT,
+                updateHttp, String.class, params);
         System.out.println(responseEntity.getBody());
 
         //DELETE
@@ -57,7 +59,8 @@ public class SpringRestClient {
         Map<String, Integer> param = new HashMap<String, Integer>();
         param.put("id", 3);
         HttpEntity<User> deleteHttp = new HttpEntity<>(updateUser, headers);
-        ResponseEntity<String> deleteUserResult = restTemplate.exchange(GET_USER_DELETE_BY_ID_URL, HttpMethod.DELETE, deleteHttp, String.class, param);
+        ResponseEntity<String> deleteUserResult = restTemplate.exchange(GET_USER_DELETE_BY_ID_URL, HttpMethod.DELETE,
+                deleteHttp, String.class, param);
         System.out.println(deleteUserResult.getBody());
     }
 }
